@@ -26,3 +26,9 @@ Fonctionnalités :
 - Affichage coloré selon la valeur (vert pour positif, rouge pour négatif, noir pour zéro)
 - Interface moderne avec effets de survol
 - Support complet du clavier pour une utilisation facilitée
+
+## Preview
+
+<div align="center">
+  <img src="./assets/app.png" />
+</div>
