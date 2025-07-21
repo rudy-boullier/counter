@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <style>
+      *,
+      ::before,
+      ::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      #counter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .card__counter-value {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #000;
+        margin: 20px 0;
+      }
+
+      .card__counter-info {
+        color: rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+
+      .card__buttons {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .btn {
+        background-color: #000;
+        color: white;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        min-width: 80px;
+      }
+
+      .btn:hover {
+        color: #000;
+        background-color: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border: 1px solid #000;
+      }
+
+      .btn--reset {
+        background-color: #e53e3e;
+      }
+
+      .btn--reset:hover {
+        color: #e53e3e;
+        background-color: #fff;
+        border: 1px solid #e53e3e;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="counter">
+      <div class="card">
+        <div class="card__counter-value" id="counterValue">0</div>
+        <p class="card__counter-info">Click the buttons to change the counter value</p>
+        <div class="card__buttons">
+          <button class="btn" id="decrementBtn">-</button>
+          <button class="btn btn--reset" id="resetBtn">Reset</button>
+          <button class="btn" id="incrementBtn">+</button>
+        </div>
+      </div>
+    </main>
+    <script>
+      let counterValue = 0;
+      const counterDisplay = document.getElementById("counterValue");
+      const incrementBtn = document.getElementById("incrementBtn");
+      const decrementBtn = document.getElementById("decrementBtn");
+      const resetBtn = document.getElementById("resetBtn");
+
+      function updateDisplay() {
+        counterDisplay.textContent = counterValue;
+        
+        // Change color based on value
+        if (counterValue > 0) {
+          counterDisplay.style.color = "#28a745"; // Green for positive
+        } else if (counterValue < 0) {
+          counterDisplay.style.color = "#dc3545"; // Red for negative
+        } else {
+          counterDisplay.style.color = "#000"; // Default for zero
+        }
+      }
+
+      function increment() {
+        counterValue++;
+        updateDisplay();
+      }
+
+      function decrement() {
+        counterValue--;
+        updateDisplay();
+      }
+
+      function reset() {
+        counterValue = 0;
+        updateDisplay();
+      }
+
+      // Event listeners
+      incrementBtn.addEventListener("click", increment);
+      decrementBtn.addEventListener("click", decrement);
+      resetBtn.addEventListener("click", reset);
+
+      // Keyboard support
+      document.addEventListener("keydown", (event) => {
+        switch(event.key) {
+          case "ArrowUp":
+          case "+":
+            event.preventDefault();
+            increment();
+            break;
+          case "ArrowDown":
+          case "-":
+            event.preventDefault();
+            decrement();
+            break;
+          case " ":
+          case "r":
+          case "R":
+            event.preventDefault();
+            reset();
+            break;
+        }
+      });
+
+      // Initialize display
+      updateDisplay();
+    </script>
+  </body>
+</html>
